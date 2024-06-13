@@ -19,6 +19,6 @@
   - > docker exec -it container_name bash
   - at this point, sqlite3 client should be ready to go, as it is on dockerfile
   - create simple database file so sqlite can use it
-  - > touch sqlite.db
+  - > touch db.sqlite
   - connect with sqlite client and execute the sql examples (available in rawSql.txt file)
-  - > sqlite3 sqlite.db
+  - > sqlite3 db.sqlite
