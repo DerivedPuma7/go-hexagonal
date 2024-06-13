@@ -8,6 +8,10 @@ type ProductService struct {
 	Persistence interfaces.ProductPersistenceInterface
 }
 
+func NewProductService(persistence interfaces.ProductPersistenceInterface) *ProductService {
+	return &ProductService{Persistence: persistence}
+}
+
 var _ interfaces.ProductServiceInterface = (*ProductService)(nil)
 
 func (s *ProductService) Get(id string) (interfaces.ProductInterface, error) {
