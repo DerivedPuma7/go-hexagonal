@@ -30,6 +30,9 @@
   - at this point, cobra-cli should be ready to go, as it is on dockerfile
   - init cobra 
   - > cobra init
+#### usage: examples
+- > go run main.go cli -a=create -n=teste name -p=25
+- > go run main.go cli -a=get --i=a7043d43-0b3a-4627-ac93-3e0bdc6a49fd
 
 ### Dependencies
 > go mod tidy
