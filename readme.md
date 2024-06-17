@@ -22,3 +22,14 @@
   - > touch db.sqlite
   - connect with sqlite client and execute the sql examples (available in rawSql.txt file)
   - > sqlite3 db.sqlite
+
+### Cobra CLI
+- add cobra as a command liner interface
+  - access app container
+  - > docker exec -it container_name bash
+  - at this point, cobra-cli should be ready to go, as it is on dockerfile
+  - init cobra 
+  - > cobra init
+
+### Dependencies
+> go mod tidy
