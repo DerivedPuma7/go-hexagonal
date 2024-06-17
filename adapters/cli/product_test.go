@@ -73,7 +73,7 @@ func TestRun_Default(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 	_, service := buildMocks(ctrl)
-	expectedEnableResult := fmt.Sprintf(`Product ID: %s\nName: %s\nPrice: %f\nStatus: %s`, productId, productName, productPrice, productStatus)
+	expectedEnableResult := fmt.Sprintf("Product ID: %s \nName: %s \nPrice: %f \nStatus: %s", productId, productName, productPrice, productStatus)
 
 	result, err := cli.Run(service, "", productId, "", 0)
 
