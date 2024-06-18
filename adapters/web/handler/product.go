@@ -12,7 +12,7 @@ import (
 
 func MakeProductHandlers(r *mux.Router, n *negroni.Negroni, service interfaces.ProductServiceInterface) {
 	r.Handle(
-		"/product/{id}", 
+		"/products/{id}", 
 		n.With(
 			negroni.Wrap(getProduct(service)),
 		),
