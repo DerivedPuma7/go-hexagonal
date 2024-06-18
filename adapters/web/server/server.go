@@ -1,6 +1,8 @@
 package server
 
 import (
+	"fmt"
+
 	"github.com/DerivedPuma7/go-hexagonal/adapters/web/handler"
 	"github.com/DerivedPuma7/go-hexagonal/application/interfaces"
 
@@ -33,10 +35,11 @@ func (w Webserver) Serve() {
 	server := &http.Server{
 		ReadHeaderTimeout: 10 * time.Second,
 		WriteTimeout: 10 * time.Second,
-		Addr: ":8080",
+		Addr: ":9000",
 		Handler: http.DefaultServeMux,
 		ErrorLog: log.New(os.Stderr, "log: ", log.Lshortfile),
 	}
+	fmt.Printf("Server about to start at http://localhost:8000 \n")
 	err := server.ListenAndServe()
 	if err != nil {
 		log.Fatal(err)
