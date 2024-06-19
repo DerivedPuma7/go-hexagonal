@@ -32,14 +32,16 @@ func (w Webserver) Serve() {
 	handler.MakeProductHandlers(r, n, w.Service)
 	http.Handle("/", r)
 
+	port := ":9000"
+
 	server := &http.Server{
 		ReadHeaderTimeout: 10 * time.Second,
 		WriteTimeout: 10 * time.Second,
-		Addr: ":9000",
+		Addr: port,
 		Handler: http.DefaultServeMux,
 		ErrorLog: log.New(os.Stderr, "log: ", log.Lshortfile),
 	}
-	fmt.Printf("Server about to start at http://localhost:8000 \n")
+	fmt.Printf("Server about to start at http://localhost" + port + " \n")
 	err := server.ListenAndServe()
 	if err != nil {
 		log.Fatal(err)
