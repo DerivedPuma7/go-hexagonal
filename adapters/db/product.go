@@ -32,20 +32,36 @@ func (p *ProductDb) Get(id string) (interfaces.ProductInterface, error) {
 }
 
 func (p *ProductDb) Save(product interfaces.ProductInterface) (interfaces.ProductInterface, error) {
-	var rows int
-	p.db.QueryRow("select id from products where id=?", product.GetID()).Scan(&rows)
-	if rows == 0 {
+	exists, err := p.productExists(product.GetID())
+	if err != nil {
+		return nil, err
+	}
+
+	if exists {
+		_, err := p.update(product)
+		if err != nil {
+			return nil, err
+		}
+	} else {
 		_, err := p.create(product)
 		if err != nil {
 			return nil, err
 		}
-		return product, nil
 	}
-	_, err := p.update(product)
-	if err != nil {
-		return nil, err
-	}
+
 	return product, nil
+}
+
+func (p *ProductDb) productExists(id string) (bool, error) {
+	var existingID string
+	err := p.db.QueryRow("select id from products where id=?", id).Scan(&existingID)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return false, nil
+		}
+		return false, err
+	}
+	return true, nil
 }
 
 func (p *ProductDb) create(product interfaces.ProductInterface) (interfaces.ProductInterface, error) {
